@@ -1,0 +1,81 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "deno@2.1.2": {
+      "last_modified": "2024-12-02T00:03:49Z",
+      "resolved": "github:NixOS/nixpkgs/2c15aa59df0017ca140d9ba302412298ab4bf22a#deno",
+      "source": "devbox-search",
+      "version": "2.1.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/cfzwfk4rs05zmw0yzbikbrm845prn458-deno-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/cfzwfk4rs05zmw0yzbikbrm845prn458-deno-2.1.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xm8z4ig2aplf6xl3mgvgbjbc1wbcq8yk-deno-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xm8z4ig2aplf6xl3mgvgbjbc1wbcq8yk-deno-2.1.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k5b74sryjbpd56z0i728k5amn6h7ycvn-deno-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/k5b74sryjbpd56z0i728k5amn6h7ycvn-deno-2.1.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pnp3xh6saw61r65w26g1iqxfkcv08kw1-deno-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pnp3xh6saw61r65w26g1iqxfkcv08kw1-deno-2.1.2"
+        }
+      }
+    },
+    "libiconv@2.40": {
+      "last_modified": "2024-11-16T04:25:12Z",
+      "resolved": "github:NixOS/nixpkgs/34a626458d686f1b58139620a8b2793e9e123bba#libiconv",
+      "source": "devbox-search",
+      "version": "2.40",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/vmj98hrwfjba7rsqml99gvv7ad0x2a4x-glibc-iconv-2.40",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/vmj98hrwfjba7rsqml99gvv7ad0x2a4x-glibc-iconv-2.40"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/nx02dmkq0kv0jdi4dksy49dxvhg75lxb-glibc-iconv-2.40",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/nx02dmkq0kv0jdi4dksy49dxvhg75lxb-glibc-iconv-2.40"
+        }
+      }
+    }
+  }
+}
