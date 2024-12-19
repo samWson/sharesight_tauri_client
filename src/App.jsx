@@ -6,13 +6,13 @@ import { restClient } from '@polygon.io/client-js';
 
 import { CChart } from "@coreui/react-chartjs";
 
+const client = restClient(await invoke("get_env"));
+
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
   const [dates, setDates] = useState("");
   const [closing_prices, setClosingPrices] = useState("");
-
-  const client = restClient(await invoke("get_env"));
 
   client.stocks.aggregates("AAPL", 1, "week", "2023-01-01", "2023-02-14").then((data) => {
     const chart_data = data["results"].map((obj) => {
