@@ -2,23 +2,39 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
-
 import { restClient } from '@polygon.io/client-js';
-const rest = restClient(await invoke("get_env"));
 
 import { CChart } from "@coreui/react-chartjs";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [dates, setDates] = useState("");
+  const [closing_prices, setClosingPrices] = useState("");
 
-  async function greet() {
-    rest.stocks.aggregates("AAPL", 1, "day", "2023-01-01", "2023-04-14").then((data) => {
-      console.log(data);
-    }).catch(e => {
-      console.error('An error happened:', e);
+  const client = restClient(await invoke("get_env"));
+
+  client.stocks.aggregates("AAPL", 1, "week", "2023-01-01", "2023-02-14").then((data) => {
+    const chart_data = data["results"].map((obj) => {
+      return {"close_price": obj["c"], "timestamp": new Date(obj["t"])};
     });
 
+    setDates(
+      chart_data.map((obj) => {
+        return obj["timestamp"].toDateString();
+      })
+    );
+
+    setClosingPrices(
+      chart_data.map((obj) => {
+        return obj["close_price"]
+      })
+    );
+  }).catch(e => {
+    console.error('An error happened:', e);
+  });
+
+  async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
   }
@@ -59,53 +75,19 @@ function App() {
       <CChart
         type="line"
         data={{
-          labels: ["January", "February", "March", "April", "May", "June", "July"],
+          labels: dates,
           datasets: [
             {
-              label: "My First dataset",
-              backgroundColor: "rgba(220, 220, 220, 0.2)",
-              borderColor: "rgba(220, 220, 220, 1)",
-              pointBackgroundColor: "rgba(220, 220, 220, 1)",
-              pointBorderColor: "#fff",
-              data: [40, 20, 12, 39, 10, 40, 39, 80, 40]
-            },
-            {
-              label: "My Second dataset",
+              label: "AAPL Closing Prices",
               backgroundColor: "rgba(151, 187, 205, 0.2)",
               borderColor: "rgba(151, 187, 205, 1)",
               pointBackgroundColor: "rgba(151, 187, 205, 1)",
               pointBorderColor: "#fff",
-              data: [50, 12, 28, 29, 7, 25, 12, 70, 60]
+              data: closing_prices
             },
           ],
         }}
-        options={{
-        //   plugins: {
-        //     legend: {
-        //       labels: {
-        //         color: getStyle('--cui-body-color'),
-        //       }
-        //     }
-        //   },
-        //   scales: {
-        //     x: {
-        //       grid: {
-        //         color: getStyle('--cui-border-color-translucent'),
-        //       },
-        //       ticks: {
-        //         color: getStyle('--cui-body-color'),
-        //       },
-        //     },
-        //     y: {
-        //       grid: {
-        //         color: getStyle('--cui-border-color-translucent'),
-        //       },
-        //       ticks: {
-        //       color: getStyle('--cui-body-color'),
-        //     },
-        //   },
-        // },
-        }}
+        options={{}}
       />
     </main>
   );
